@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/NSArray.h>
-#import <FScript/Block.h>
+#import <FScript/FSBlock.h>
 
 /*! 
 @category NSArray(ArrayUtil)

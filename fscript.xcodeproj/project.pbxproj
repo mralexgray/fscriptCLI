@@ -3,41 +3,40 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 44;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		899E0B0F0EA6CDC5009A0DF2 /* pcre_exec.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0AFC0EA6CDC5009A0DF2 /* pcre_exec.c */; };
-		899E0B100EA6CDC5009A0DF2 /* pcre_newline.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0AFD0EA6CDC5009A0DF2 /* pcre_newline.c */; };
-		899E0B110EA6CDC5009A0DF2 /* pcre_study.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0AFE0EA6CDC5009A0DF2 /* pcre_study.c */; };
-		899E0B120EA6CDC5009A0DF2 /* pcre_try_flipped.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0AFF0EA6CDC5009A0DF2 /* pcre_try_flipped.c */; };
-		899E0B130EA6CDC5009A0DF2 /* pcre_valid_utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B000EA6CDC5009A0DF2 /* pcre_valid_utf8.c */; };
-		899E0B140EA6CDC5009A0DF2 /* pcre_dfa_exec.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B010EA6CDC5009A0DF2 /* pcre_dfa_exec.c */; };
-		899E0B150EA6CDC5009A0DF2 /* pcre_globals.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B020EA6CDC5009A0DF2 /* pcre_globals.c */; };
-		899E0B160EA6CDC5009A0DF2 /* pcre_info.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B030EA6CDC5009A0DF2 /* pcre_info.c */; };
-		899E0B170EA6CDC5009A0DF2 /* pcre_version.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B040EA6CDC5009A0DF2 /* pcre_version.c */; };
-		899E0B180EA6CDC5009A0DF2 /* pcre_ord2utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B050EA6CDC5009A0DF2 /* pcre_ord2utf8.c */; };
-		899E0B190EA6CDC5009A0DF2 /* pcre_fullinfo.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B060EA6CDC5009A0DF2 /* pcre_fullinfo.c */; };
-		899E0B1A0EA6CDC5009A0DF2 /* pcre_ucd.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B070EA6CDC5009A0DF2 /* pcre_ucd.c */; };
-		899E0B1B0EA6CDC5009A0DF2 /* pcre_maketables.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B080EA6CDC5009A0DF2 /* pcre_maketables.c */; };
-		899E0B1C0EA6CDC5009A0DF2 /* pcre_tables.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B090EA6CDC5009A0DF2 /* pcre_tables.c */; };
-		899E0B1D0EA6CDC5009A0DF2 /* pcre_xclass.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B0A0EA6CDC5009A0DF2 /* pcre_xclass.c */; };
-		899E0B1E0EA6CDC5009A0DF2 /* pcre_config.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B0B0EA6CDC5009A0DF2 /* pcre_config.c */; };
-		899E0B1F0EA6CDC5009A0DF2 /* pcre_compile.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B0C0EA6CDC5009A0DF2 /* pcre_compile.c */; };
-		899E0B200EA6CDC5009A0DF2 /* pcre_refcount.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B0D0EA6CDC5009A0DF2 /* pcre_refcount.c */; };
-		899E0B210EA6CDC5009A0DF2 /* pcre_get.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B0E0EA6CDC5009A0DF2 /* pcre_get.c */; };
-		899E0B650EA6D4FA009A0DF2 /* chartables.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B640EA6D4FA009A0DF2 /* chartables.c */; };
+		899E0B0F0EA6CDC5009A0DF2 /* pcre_exec.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0AFC0EA6CDC5009A0DF2 /* pcre_exec.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		899E0B100EA6CDC5009A0DF2 /* pcre_newline.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0AFD0EA6CDC5009A0DF2 /* pcre_newline.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		899E0B110EA6CDC5009A0DF2 /* pcre_study.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0AFE0EA6CDC5009A0DF2 /* pcre_study.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		899E0B120EA6CDC5009A0DF2 /* pcre_try_flipped.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0AFF0EA6CDC5009A0DF2 /* pcre_try_flipped.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		899E0B130EA6CDC5009A0DF2 /* pcre_valid_utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B000EA6CDC5009A0DF2 /* pcre_valid_utf8.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		899E0B140EA6CDC5009A0DF2 /* pcre_dfa_exec.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B010EA6CDC5009A0DF2 /* pcre_dfa_exec.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		899E0B150EA6CDC5009A0DF2 /* pcre_globals.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B020EA6CDC5009A0DF2 /* pcre_globals.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		899E0B160EA6CDC5009A0DF2 /* pcre_info.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B030EA6CDC5009A0DF2 /* pcre_info.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		899E0B170EA6CDC5009A0DF2 /* pcre_version.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B040EA6CDC5009A0DF2 /* pcre_version.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		899E0B180EA6CDC5009A0DF2 /* pcre_ord2utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B050EA6CDC5009A0DF2 /* pcre_ord2utf8.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		899E0B190EA6CDC5009A0DF2 /* pcre_fullinfo.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B060EA6CDC5009A0DF2 /* pcre_fullinfo.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		899E0B1A0EA6CDC5009A0DF2 /* pcre_ucd.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B070EA6CDC5009A0DF2 /* pcre_ucd.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		899E0B1B0EA6CDC5009A0DF2 /* pcre_maketables.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B080EA6CDC5009A0DF2 /* pcre_maketables.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		899E0B1C0EA6CDC5009A0DF2 /* pcre_tables.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B090EA6CDC5009A0DF2 /* pcre_tables.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		899E0B1D0EA6CDC5009A0DF2 /* pcre_xclass.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B0A0EA6CDC5009A0DF2 /* pcre_xclass.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		899E0B1E0EA6CDC5009A0DF2 /* pcre_config.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B0B0EA6CDC5009A0DF2 /* pcre_config.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		899E0B1F0EA6CDC5009A0DF2 /* pcre_compile.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B0C0EA6CDC5009A0DF2 /* pcre_compile.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		899E0B200EA6CDC5009A0DF2 /* pcre_refcount.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B0D0EA6CDC5009A0DF2 /* pcre_refcount.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		899E0B210EA6CDC5009A0DF2 /* pcre_get.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B0E0EA6CDC5009A0DF2 /* pcre_get.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		899E0B650EA6D4FA009A0DF2 /* chartables.c in Sources */ = {isa = PBXBuildFile; fileRef = 899E0B640EA6D4FA009A0DF2 /* chartables.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8DD76F9A0486AA7600D96B5E /* fscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* fscript.m */; settings = {ATTRIBUTES = (); }; };
 		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
 		8DD76F9F0486AA7600D96B5E /* fscript.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859EA3029092ED04C91782 /* fscript.1 */; };
 		CB12EBC50B45A09600A2D991 /* StringSprintf.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CB12EBC30B45A09600A2D991 /* StringSprintf.h */; };
 		CB12EBC60B45A09600A2D991 /* StringSprintf.m in Sources */ = {isa = PBXBuildFile; fileRef = CB12EBC40B45A09600A2D991 /* StringSprintf.m */; };
 		CB3B86240B581CA300E80B21 /* FSNSMutableDictionary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CB3B86220B581CA300E80B21 /* FSNSMutableDictionary.h */; };
-		CB3B86250B581CA300E80B21 /* FSNSMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3B86230B581CA300E80B21 /* FSNSMutableDictionary.m */; };
+		CB3B86250B581CA300E80B21 /* FSNSMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3B86230B581CA300E80B21 /* FSNSMutableDictionary.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CB3B86B40B58578300E80B21 /* FileTest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CB3B86B20B58578300E80B21 /* FileTest.h */; };
 		CB3B86B50B58578300E80B21 /* FileTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3B86B30B58578300E80B21 /* FileTest.m */; };
 		CB4D55300B7D638A00248416 /* FSNSDictionaryPairs.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CB4D552E0B7D638A00248416 /* FSNSDictionaryPairs.h */; };
-		CB4D55310B7D638A00248416 /* FSNSDictionaryPairs.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D552F0B7D638A00248416 /* FSNSDictionaryPairs.m */; };
 		CB54E4B10D2B2540008D3121 /* FSRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = CB54E4B00D2B2540008D3121 /* FSRegex.m */; };
 		CB6417B90D34356A00A654D2 /* ExceptionHandling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB6417B80D34356A00A654D2 /* ExceptionHandling.framework */; };
 		CB7F3AB20B51E7E80029C810 /* makedocs.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = CB7F3AB10B51E7E80029C810 /* makedocs.sh */; };
@@ -60,7 +59,6 @@
 		CB85DCEB0B2790A800ADCB3E /* FSSystemUtility.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CB85DCD40B2790A800ADCB3E /* FSSystemUtility.h */; };
 		CB85DCEC0B2790A800ADCB3E /* FSSystemUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = CB85DCD50B2790A800ADCB3E /* FSSystemUtility.m */; };
 		CB8E74E00B5588F8009CE7EA /* COPYING in CopyFiles */ = {isa = PBXBuildFile; fileRef = CB8E74DF0B5588F8009CE7EA /* COPYING */; };
-		CBA84FB40D283EB60028054D /* FScript.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBA84FB30D283EB60028054D /* FScript.framework */; };
 		CBB0FF810B730E70009A7ACD /* HISTORY in CopyFiles */ = {isa = PBXBuildFile; fileRef = CBB0FF800B730E70009A7ACD /* HISTORY */; };
 		CBC2BECB0B5C4CDA009E1042 /* BlockForeach.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CBC2BEC90B5C4CDA009E1042 /* BlockForeach.h */; };
 		CBC2BECC0B5C4CDA009E1042 /* BlockForeach.m in Sources */ = {isa = PBXBuildFile; fileRef = CBC2BECA0B5C4CDA009E1042 /* BlockForeach.m */; };
@@ -184,7 +182,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */,
-				CBA84FB40D283EB60028054D /* FScript.framework in Frameworks */,
 				CB6417B90D34356A00A654D2 /* ExceptionHandling.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,23 +284,23 @@
 			isa = PBXGroup;
 			children = (
 				CB85DCC10B2790A700ADCB3E /* ArrayUtil.h */,
-				CB3B86B20B58578300E80B21 /* FileTest.h */,
-				CB3B86220B581CA300E80B21 /* FSNSMutableDictionary.h */,
-				CB85DCCA0B2790A800ADCB3E /* FSNSNumberMod.h */,
-				CB85DCD00B2790A800ADCB3E /* StringRegex.h */,
-				CB12EBC30B45A09600A2D991 /* StringSprintf.h */,
-				CB85DCD40B2790A800ADCB3E /* FSSystemUtility.h */,
-				CBC2BEC90B5C4CDA009E1042 /* BlockForeach.h */,
-				CB4D552E0B7D638A00248416 /* FSNSDictionaryPairs.h */,
 				CB85DCC20B2790A700ADCB3E /* ArrayUtil.m */,
+				CBC2BEC90B5C4CDA009E1042 /* BlockForeach.h */,
 				CBC2BECA0B5C4CDA009E1042 /* BlockForeach.m */,
+				CB3B86B20B58578300E80B21 /* FileTest.h */,
 				CB3B86B30B58578300E80B21 /* FileTest.m */,
+				CB4D552E0B7D638A00248416 /* FSNSDictionaryPairs.h */,
 				CB4D552F0B7D638A00248416 /* FSNSDictionaryPairs.m */,
+				CB3B86220B581CA300E80B21 /* FSNSMutableDictionary.h */,
 				CB3B86230B581CA300E80B21 /* FSNSMutableDictionary.m */,
+				CB85DCCA0B2790A800ADCB3E /* FSNSNumberMod.h */,
 				CB85DCCB0B2790A800ADCB3E /* FSNSNumberMod.m */,
-				CB85DCD10B2790A800ADCB3E /* StringRegex.m */,
-				CB12EBC40B45A09600A2D991 /* StringSprintf.m */,
+				CB85DCD40B2790A800ADCB3E /* FSSystemUtility.h */,
 				CB85DCD50B2790A800ADCB3E /* FSSystemUtility.m */,
+				CB85DCD00B2790A800ADCB3E /* StringRegex.h */,
+				CB85DCD10B2790A800ADCB3E /* StringRegex.m */,
+				CB12EBC30B45A09600A2D991 /* StringSprintf.h */,
+				CB12EBC40B45A09600A2D991 /* StringSprintf.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -324,12 +321,12 @@
 		CB85DD1B0B27912A00ADCB3E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				CB54E4AF0D2B2540008D3121 /* FSRegex.h */,
-				CB54E4B00D2B2540008D3121 /* FSRegex.m */,
 				CB85DCC50B2790A700ADCB3E /* FSFile.h */,
 				CB85DCC60B2790A800ADCB3E /* FSFile.m */,
 				CB85DCC70B2790A800ADCB3E /* FSFileStdin.h */,
 				CB85DCC80B2790A800ADCB3E /* FSFileStdin.m */,
+				CB54E4AF0D2B2540008D3121 /* FSRegex.h */,
+				CB54E4B00D2B2540008D3121 /* FSRegex.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -360,9 +357,16 @@
 /* Begin PBXProject section */
 		08FB7793FE84155DC02AAC07 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+			};
 			buildConfigurationList = 1DEB927808733DD40010E9CD /* Build configuration list for PBXProject "fscript" */;
-			compatibilityVersion = "Xcode 3.0";
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 08FB7794FE84155DC02AAC07 /* fscript */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -390,7 +394,6 @@
 				CB3B86B50B58578300E80B21 /* FileTest.m in Sources */,
 				CBC2BECC0B5C4CDA009E1042 /* BlockForeach.m in Sources */,
 				CBEDD4800B72ABED0015E16B /* interpreter.m in Sources */,
-				CB4D55310B7D638A00248416 /* FSNSDictionaryPairs.m in Sources */,
 				CBC6D4D30C7001C000C14169 /* FSToolHelp.m in Sources */,
 				CB54E4B10D2B2540008D3121 /* FSRegex.m in Sources */,
 				899E0B0F0EA6CDC5009A0DF2 /* pcre_exec.c in Sources */,
@@ -422,24 +425,35 @@
 		1DEB927508733DD40010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+					"$(HOME)/Library/Frameworks",
+					"$(USER_LIBRARY_DIR)/Frameworks",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../AGRegex7\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../AGRegex7\" \"/Library/Frameworks\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_ENABLE_OBJC_GC = supported;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = fscript_Prefix.pch;
+				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/Library/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-DSUPPORT_UTF8",
 					"-DHAVE_CONFIG_H",
 				);
+				OTHER_LDFLAGS = (
+					"-ledit",
+					"-framework",
+					FScript,
+				);
 				PRODUCT_NAME = fscript;
+				SDKROOT = macosx;
 				ZERO_LINK = NO;
 			};
 			name = Debug;
@@ -447,28 +461,33 @@
 		1DEB927608733DD40010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					ppc64,
-					i386,
-					x86_64,
-				);
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+					"$(HOME)/Library/Frameworks",
+					"$(USER_LIBRARY_DIR)/Frameworks",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "";
-				GCC_ENABLE_OBJC_GC = supported;
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../AGRegex7\" \"/Library/Frameworks\"";
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = fscript_Prefix.pch;
+				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/Library/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-DSUPPORT_UTF8",
 					"-DHAVE_CONFIG_H",
 				);
+				OTHER_LDFLAGS = (
+					"-ledit",
+					"-framework",
+					FScript,
+				);
 				PRODUCT_NAME = fscript;
+				SDKROOT = macosx;
 				STRIP_INSTALLED_PRODUCT = YES;
 			};
 			name = Release;
@@ -476,7 +495,7 @@
 		1DEB927908733DD40010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH_32_BIT)";
+				CLANG_ENABLE_MODULES = YES;
 				GCC_ALTIVEC_EXTENSIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -485,8 +504,10 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = fscript_Prefix.pch;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-DHAVE_CONFIG_H",
 					"-DSUPPORT_UTF8",
@@ -494,7 +515,7 @@
 				OTHER_LDFLAGS = "-ledit";
 				PREBINDING = NO;
 				PRODUCT_NAME = fscript;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				SDKROOT = macosx;
 				WARNING_LDFLAGS = (
 					"-ledit",
 					"-ltermcap",
@@ -506,12 +527,7 @@
 		1DEB927A08733DD40010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					ppc64,
-					i386,
-					x86_64,
-				);
+				CLANG_ENABLE_MODULES = YES;
 				GCC_ALTIVEC_EXTENSIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -519,16 +535,16 @@
 				GCC_FAST_OBJC_DISPATCH = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = (
 					"-DSUPPORT_UTF8",
 					"-DHAVE_CONFIG_H",
 				);
 				OTHER_LDFLAGS = "-ledit";
 				PREBINDING = NO;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				SDKROOT = macosx;
 				WARNING_LDFLAGS = (
 					"-ledit",
 					"-ltermcap",

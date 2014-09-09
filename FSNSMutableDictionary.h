@@ -12,7 +12,7 @@
 @category NSMutableDictionary(FSNSMutableDictionary)
 @abstract The FSNSMutableDictionary category adds class methods to NSMutableDictionary that make it easier to create dictionaries from arrays
 */
-@interface NSMutableDictionary (FSNSMutableDictionary)
+@interface NSMutableDictionary (Pairs)
 
 
 /*!

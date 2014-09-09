@@ -9,20 +9,8 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface FSToolHelp : NSObject {
+@interface FSToolHelp : NSObject
 
-}
-
-
-
-- (NSString*) description;
-
-- (NSString*) import;
-
-- (NSString*) version;
-
-- (NSString*) quit;
-
-- (NSString*) frameworks;
+@property (readonly) NSString * description, * import, * version, * quit, * frameworks;
 
 @end

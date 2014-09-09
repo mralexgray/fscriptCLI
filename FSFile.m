@@ -31,19 +31,19 @@ static NSData* newlineData;
 
 
 + (FSFile*) fromNSFileHandle:(NSFileHandle*)handle {
-    return [[[FSFile alloc] initWithFileHandle:handle atLocation:@""] autorelease];
+    return [[FSFile alloc] initWithFileHandle:handle atLocation:@""];
 }
 
 + (FSFile*) open:(NSString*)path {
     // create the file if it does not exist
-    NSFileManager* fileManager = [NSFileManager defaultManager];
+    NSFileManager* fileManager = NSFileManager.defaultManager ;
     if (![fileManager fileExistsAtPath:path])
         [fileManager createFileAtPath:path contents:nil attributes:nil];
     
     FSFile* file = [[FSFile alloc] initWithFileHandle:[NSFileHandle fileHandleForUpdatingAtPath:path]
                                            atLocation:path];
     
-    return [file autorelease];
+    return file;
 }
 
 
@@ -70,7 +70,7 @@ typedef struct { NSString* modeString;  BOOL append;  BOOL create;  BOOL clobber
                       };
 */
 + (FSFile*) open:(NSString*)path mode:(NSString*)mode {
-    NSFileManager* fileManager = [NSFileManager defaultManager];
+    NSFileManager* fileManager = NSFileManager.defaultManager ;
     NSFileHandle* fileHandle;
     /*
     int index = -1;
@@ -156,24 +156,21 @@ typedef struct { NSString* modeString;  BOOL append;  BOOL create;  BOOL clobber
     if (fileHandle==nil)    // could we not get a valid filehandle?
         FSExecError([@"Error while opening file: " stringByAppendingString:path]);
     
-    [fileHandle retain];
 
     if (clobber)    // should we erase existing data?
         [fileHandle truncateFileAtOffset:0];
     if (append)     // should we start by appending?
         [fileHandle seekToEndOfFile];
     
-    return [[[FSFile alloc] initWithFileHandle:fileHandle atLocation:path] autorelease];
+    return [[FSFile alloc] initWithFileHandle:fileHandle atLocation:path];
 }
 
 
 
 - (id) initWithFileHandle:(NSFileHandle*)handle atLocation:(NSString*)fileLocation {
     fileHandle = handle;
-    [fileHandle retain];
     
     location = fileLocation;
-    [location retain];
     
     sustainBuffer = [[NSMutableString alloc] init];
     
@@ -186,12 +183,6 @@ typedef struct { NSString* modeString;  BOOL append;  BOOL create;  BOOL clobber
     return [super init];
 }
 
-- (void) dealloc {
-    [sustainBuffer release];
-    [location release];
-    [fileHandle release];
-    [super dealloc];
-}
 
 
 
@@ -309,17 +300,15 @@ November 4th, 2003
 -------------------------------------------------------------------------------
 */
 #define DEFAULT_READ_BUFFER 100
+
 - (NSString*)readlnWithSeparator:(NSString*)separator {
-	NSString*       aString;
-    char*           buffer;
-	char*           buffer2;
-	char*           buffer3;
-    int             len;
-	BOOL            finished = NO;
-    NSRange         aRange;
-	int             rBufSize;
-    NSString*       returnString;
-    const char*     separatorCString = [separator cStringUsingEncoding:NSUTF8StringEncoding];
+
+  NSString *  aString, * returnString;
+      char *  buffer, * buffer2, * buffer3;
+       int    len, rBufSize;
+	    BOOL    finished = NO;
+   NSRange    aRange;
+const char *  separatorCString = [separator cStringUsingEncoding:NSUTF8StringEncoding];
     
     
     [fileHandle synchronizeFile];
@@ -328,7 +317,7 @@ November 4th, 2003
     int separatorLen = [separator length];
 	
 	aRange = [sustainBuffer rangeOfString:separator];
-	if ((aRange.location >= 0) && (aRange.length == separatorLen)) {
+	if (aRange.length == separatorLen) {
 		aRange.length = aRange.location;
 		aRange.location = 0;
         returnString = [sustainBuffer substringWithRange:aRange];
@@ -372,14 +361,14 @@ November 4th, 2003
 					const char* tempBuffer = [sustainBuffer cStringUsingEncoding:NSUTF8StringEncoding];
                     memcpy(buffer3,tempBuffer,sustainBufferLen);
 					strcat(buffer3, buffer2);
-					returnString = [NSString stringWithCString:buffer3];
+					returnString = @(buffer3);
 					free(buffer3);
                     
                     
                     
 					[sustainBuffer setString:@""];
 				}							
-				aString = [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
+				aString = @(buffer);
 				if ([aString length]) {
 					[sustainBuffer appendString:aString];
 				}
@@ -415,7 +404,7 @@ November 4th, 2003
 - (NSArray*) readlinesWithSeparator:(NSString*)separator {
     NSMutableArray* allLines = [[NSMutableArray alloc] init];
     NSString* line;
-    while (line = [self readlnWithSeparator:separator]) {
+    while ((line = [self readlnWithSeparator:separator])) {
         [allLines addObject:line];
     }
     return allLines;
@@ -463,7 +452,7 @@ November 4th, 2003
 
 
 - (NSNumber*)fileDescriptor {
-    return [NSNumber numberWithInt:[fileHandle fileDescriptor]];
+    return @([fileHandle fileDescriptor]);
 }
 - (NSData*)availableData {
     [self truncateSustainBuffer];

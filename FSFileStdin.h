@@ -15,16 +15,11 @@
  cannot read the normal 80-byte block because the user has not typed in that many
  characters
 */
-@interface FSFileStdin : FSFile {
-    NSString* buffer;
-}
 
-+ (id) getStdin;
+@interface FSFileStdin : FSFile 
 
-
-- (id) init;
-
-- (NSString*) readlnWithSeparator:(NSString*) separator;
++ 			(id) getStdin;
+- (NSString*) readlnWithSeparator:(NSString*)separator;
 
 
 

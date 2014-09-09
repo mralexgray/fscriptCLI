@@ -9,7 +9,7 @@
 #import <FScript/FScript.h>
 
 
-@implementation NSMutableDictionary (FSNSMutableDictionary)
+@implementation NSMutableDictionary (Pairs)
 
 
 + (NSMutableDictionary*) dictionaryWithPairs:(NSArray*)pairs {
@@ -17,9 +17,8 @@
     
     unsigned int count = [pairs count];
     for (int i=0; i < count; i++) {
-        NSArray* pair = [pairs objectAtIndex:i];
-        [dict setObject:[pair objectAtIndex:1]
-                 forKey:[pair objectAtIndex:0]];
+        NSArray* pair = pairs[i];
+        dict[pair[0]] = pair[1];
     }
     
     return [dict autorelease];
@@ -35,8 +34,7 @@
     }
         
     for (int i=0; i < count; i+=2) {
-        [dict setObject:[flatPairs objectAtIndex:i+1]
-                 forKey:[flatPairs objectAtIndex:i]];
+        dict[flatPairs[i]] = flatPairs[i+1];
     }
     
     return [dict autorelease];

@@ -6,13 +6,13 @@
 //  Copyright 2007 Andrew Weinrich. All rights reserved.
 //
 
-#import <FScript/Block.h>
+#import <FScript/FSBlock.h>
 
 /*!
 @category Block(BlockForeach)
  @abstract The BlockForeach category adds an iterative method to Blocks that repeatedly runs the block as long as it produces non-<code>nil</code> output, then runs another block with that output.
  */
-@interface Block (BlockForeach)
+@interface FSBlock (BlockForeach)
 
 
 /*!
@@ -49,6 +49,6 @@ file2 := FSFile open:'....'.
 
 However, with this code, <span class="method">readlines</span> will read in the entire file at once, which may be very inefficient if the file is large. The iterative method using <span class="method">foreach</span>, on the other hand, only reads and stores a single line at a time.
  */
-- (void) foreach:(Block*)iterator;
+- (void) foreach:(FSBlock*)iterator;
 
 @end

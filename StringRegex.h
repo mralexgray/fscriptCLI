@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <FSRegex.h>
-#import <FScript/Block.h>
+#import <FScript/FSBlock.h>
 #import <FScript/FSBoolean.h>
 #import <Foundation/NSString.h>
 
@@ -83,7 +83,7 @@ string := string replace:'(\\d+)\\s*\\+\\s*(\\d+)' withBlock:[ :group :pat1 :pat
 "string is now '25, 47, 210'"
  @/textblock</pre></div>
  */
-- (NSString*) replace:(NSString*)pattern withBlock:(Block*)block;
+- (NSString*) replace:(NSString*)pattern withBlock:(FSBlock*)block;
 
 
 

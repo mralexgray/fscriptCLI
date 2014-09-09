@@ -177,7 +177,7 @@ char uppercaseDigits[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A'
             if (*format == '*') {
                 // width is specified by an integer in the values list
 				overrideWidth = YES;
-                requestedWidth = [[values objectAtIndex:(valuesIndex++)] intValue];
+                requestedWidth = [values[(valuesIndex++)] intValue];
                 format++;
             }
 			while (*format == '0') {
@@ -209,7 +209,7 @@ char uppercaseDigits[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A'
                                          reason:@"Not enough values supplied to printf/sprintf"
                                        userInfo:nil] raise];
             }
-            id currentValue = [values objectAtIndex:(valuesIndex++)];
+            id currentValue = values[(valuesIndex++)];
             
             
             switch (*format) {
@@ -533,7 +533,7 @@ char uppercaseDigits[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A'
     }
     
     
-    NSString* result = [NSString stringWithCString:mainBuffer encoding:NSUTF8StringEncoding];
+    NSString* result = @(mainBuffer);
     free(mainBuffer);
     return result;
 }

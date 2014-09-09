@@ -84,9 +84,9 @@ static FSRegex *backrefPattern;
 	backrefPattern = [[FSRegex alloc] initWithPattern:BACKREF_PATTERN];
 }
 
-+ (id)regexWithPattern:(NSString *)pat { return [[[self alloc] initWithPattern:pat] autorelease]; }
++ (id)regexWithPattern:(NSString *)pat { return [[self alloc] initWithPattern:pat]; }
 
-+ (id)regexWithPattern:(NSString *)pat options:(int)opts { return [[[self alloc] initWithPattern:pat options:opts ] autorelease]; }
++ (id)regexWithPattern:(NSString *)pat options:(int)opts { return [[self alloc] initWithPattern:pat options:opts ]; }
 
 - (id)init {
 	return [self initWithPattern:@""];
@@ -116,12 +116,10 @@ static FSRegex *backrefPattern;
 		}
 #endif
 		if (!(regex = pcre_compile([pat UTF8String], copts, &emsg, &eloc, NULL))) {
-			[self release];
             NSLog(@"couldn't compile regular expression: %s",emsg);
 			return nil;
 		}
 		if (pcre_fullinfo(regex, NULL, PCRE_INFO_CAPTURECOUNT, &groupCount)) {
-			[self release];
             NSLog(@"couldn't get regex fullinfo");
 			return nil;
 		}
@@ -133,14 +131,8 @@ static FSRegex *backrefPattern;
 - (void)dealloc {
 	pcre_free(regex);
 	pcre_free(extra);
-	[super dealloc];
 }
 
-- (void)finalize {
-	pcre_free(regex);
-	pcre_free(extra);
-	[super finalize];
-}
 
 - (FSRegexMatch *)findInString:(NSString *)str {
 	return [self findInString:str range:NSMakeRange(0, [str length])];
@@ -174,7 +166,7 @@ static FSRegex *backrefPattern;
 	// should not get any error besides PCRE_ERROR_NOMATCH
 	NSAssert1(error > 0, @"unexpected error pcre_exec(): %d", error);
 	// return the match, match object takes ownership of matchv
-	return [[[FSRegexMatch alloc] initWithRegex:self string:str vector:matchv count:groupCount] autorelease];
+	return [[FSRegexMatch alloc] initWithRegex:self string:str vector:matchv count:groupCount];
 }
 
 - (NSArray *)findAllInString:(NSString *)str {
@@ -190,7 +182,7 @@ static FSRegex *backrefPattern;
 }
 
 - (NSEnumerator *)findEnumeratorInString:(NSString *)str range:(NSRange)r {
-    return [[[FSRegexMatchEnumerator alloc] initWithRegex:self string:str range:r] autorelease];
+    return [[FSRegexMatchEnumerator alloc] initWithRegex:self string:str range:r];
 }
 
 - (NSString *)replaceWithString:(NSString *)rep inString:(NSString *)str {
@@ -220,14 +212,14 @@ static FSRegex *backrefPattern;
 	// while limit is not reached and there are more matches to replace
 	for (i = 0; (lim < 1 || i < lim) && i < allCount; i++) {
 		// get the the next match
-		match = [allMatches objectAtIndex:i];
+		match = allMatches[i];
 		// build the replacement string
 		repBuffer = [NSMutableString string];
 		backrefRemainRange = NSMakeRange(0, repLength);
 		caseModIdx = 0;
 		for (j = 0; j < allBackrefsCount; j++) {
 			// get the next backref
-			backref = [allBackrefs objectAtIndex:j];
+			backref = allBackrefs[j];
 			backrefMatchRange = [backref range];
 			// append the part before the backref
 			[repBuffer appendString:[rep substringWithRange:NSMakeRange(backrefRemainRange.location, backrefMatchRange.location - backrefRemainRange.location)]];
@@ -337,14 +329,14 @@ static FSRegex *backrefPattern;
 	// while limit is not reached and there are more matches
 	for (i = 0; (lim < 1 || i < lim) && i < allCount; i++) {
 		// get next match
-		match = [allMatches objectAtIndex:i];
+		match = allMatches[i];
 		matchRange = [match range];
 		// add substring from last split to this split
 		[result addObject:[str substringWithRange:NSMakeRange(remainRange.location, matchRange.location - remainRange.location)]];
 		// add captured subpatterns if any
 		count = [match count];
 		for (j = 1; j < count; j++)
-			if (group = [match groupAtIndex:j])
+			if ((group = [match groupAtIndex:j]))
 				[result addObject:group];
 		// set remaining range to the part after the split
 		remainRange.location = matchRange.location + matchRange.length;
@@ -364,7 +356,7 @@ static FSRegex *backrefPattern;
 // takes ownership of the passed match vector, free on dealloc
 - (id)initWithRegex:(FSRegex *)re string:(NSString *)str vector:(int *)mv count:(int)c {
 	if (self = [super init]) {
-		regex = [re retain];
+		regex = re;
 		string = [str copy]; // really only copies if the string is mutable, immutable strings are just retained
 		matchv = mv;
 		count = c;
@@ -374,15 +366,8 @@ static FSRegex *backrefPattern;
 
 - (void)dealloc {
 	free(matchv);
-	[regex release];
-	[string release];
-	[super dealloc];
 }
 
-- (void)finalize {
-	free(matchv);
-	[super finalize];
-}
 
 - (int)count {
 	return count;
@@ -447,7 +432,7 @@ static FSRegex *backrefPattern;
 
 - (id)initWithRegex:(FSRegex *)re string:(NSString *)s range:(NSRange)r {
     if (self = [super init]) {
-        regex = [re retain];
+        regex = re;
         string = [s copy]; // create one immutable copy of the string so we don't copy it over and over when the matches are created
         range = r;
         end = range.location + range.length;
@@ -455,15 +440,10 @@ static FSRegex *backrefPattern;
     return self;
 }
 
-- (void)dealloc {
-    [regex release];
-    [string release];
-    [super dealloc];
-}
 
 - (id)nextObject {
     FSRegexMatch *next;
-    if (next = [regex findInString:string range:range]) {
+    if ((next = [regex findInString:string range:range])) {
         range.location = [next range].location + [next range].length;
         if ([next range].length == 0)
             range.location++;

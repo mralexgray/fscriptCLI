@@ -9,14 +9,9 @@
 #import "BlockForeach.h"
 
 
-@implementation Block(BlockForeach)
+@implementation FSBlock(BlockForeach)
 
-- (void) foreach:(Block*)iterator {
-    id anObject;
-    while (anObject = [self value]) { 
-        [iterator value:anObject];
-    } 
+- (void) foreach:(FSBlock*)iterator { id anObject;
+	while (anObject == self.value) [iterator value:anObject];
 }
-
-
 @end

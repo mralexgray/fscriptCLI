@@ -14,7 +14,7 @@
 
 
 - (NSNumber*) operator_percent:(NSNumber*)operand {
-    return [NSNumber numberWithInt:([self intValue] % [operand intValue])];
+    return @([self intValue] % [operand intValue]);
 }
 
 

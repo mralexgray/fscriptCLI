@@ -212,7 +212,7 @@ int run_readline_interpreter(FSInterpreter* interpreter) {
     */
     
     // figure out whether we should use color
-    NSString* terminal = [[[NSProcessInfo processInfo] environment] objectForKey:@"TERM"];
+    NSString* terminal = [[NSProcessInfo processInfo] environment][@"TERM"];
     BOOL useColor = ([terminal isEqualToString:@"xterm-color"] || [terminal isEqualToString:@"ansi"]);
     
     
@@ -262,58 +262,56 @@ int run_readline_interpreter(FSInterpreter* interpreter) {
         else if (count > 0) {
             /* In order to use our history we have to explicitly add commands to the history */
             history(myhistory, &ev, H_ENTER, line);
-            NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+            @autoreleasepool {
             
-            NSString* lineString = [NSString stringWithCString:line encoding:NSASCIIStringEncoding];
-            
-            // add this line to the current command
-            NSString* newCommand = [[NSString alloc] initWithFormat:@"%@%@",currentCommand,lineString];
-            [currentCommand release];
-            currentCommand = newCommand;
-            
-            char* nestings = findNestings(currentNestings,line);
-            
-            currentNestings = nestings;
-            
-            if (nestings) {
-                // update the prompt
-                currentNestingsLength = strlen(nestings);
-                el_set(el, EL_PROMPT, (useColor ? &nestedPromptColor : &nestedPrompt));
-            }
-            else {
-                el_set(el, EL_PROMPT, (useColor ? &regularPromptColor : &regularPrompt));
-                currentNestingsLength = 0;
+                NSString* lineString = @(line);
                 
+                // add this line to the current command
+                NSString* newCommand = [[NSString alloc] initWithFormat:@"%@%@",currentCommand,lineString];
+                currentCommand = newCommand;
                 
-                // check for special commands
-                if ([currentCommand length] > 0) {
-                    FSInterpreterResult* execResult = [interpreter execute:currentCommand];
-                    FSVoid* voidResult = [FSVoid fsVoid];
-                    
-                    if ([execResult isOK]) {
-                        @try {
-                            id resultValue = [execResult result];  // run the compiled code
-                            
-                            if (resultValue != voidResult)
-                                [standardOut println:resultValue];
-                        }
-                        @catch (NSException* error) {
-                            // catch and print any errors
-                            [standardOut println:[error reason]];
-                        }
-                    }
-                    else {
-                        NSRange errorLocation = [execResult errorRange];
-                        [standardOut printf:@"% *s\n" withValues:[NSArray arrayWithObjects:[NSNumber numberWithInt:(errorLocation.location+defaultPromptLength+1)], @"^", nil]];
-                        [standardOut println:[execResult errorMessage]];
-                    }
+                char* nestings = findNestings(currentNestings,line);
+                
+                currentNestings = nestings;
+                
+                if (nestings) {
+                    // update the prompt
+                    currentNestingsLength = strlen(nestings);
+                    el_set(el, EL_PROMPT, (useColor ? &nestedPromptColor : &nestedPrompt));
                 }
-                
-                // release this command
-                [currentCommand release];
-                currentCommand = [[NSString alloc] init];
+                else {
+                    el_set(el, EL_PROMPT, (useColor ? &regularPromptColor : &regularPrompt));
+                    currentNestingsLength = 0;
+                    
+                    
+                    // check for special commands
+                    if ([currentCommand length] > 0) {
+                        FSInterpreterResult* execResult = [interpreter execute:currentCommand];
+                        FSVoid* voidResult = [FSVoid fsVoid];
+                        
+                        if ([execResult isOK]) {
+                            @try {
+                                id resultValue = [execResult result];  // run the compiled code
+                                
+                                if (resultValue != voidResult)
+                                    [standardOut println:resultValue];
+                            }
+                            @catch (NSException* error) {
+                                // catch and print any errors
+                                [standardOut println:[error reason]];
+                            }
+                        }
+                        else {
+                            NSRange errorLocation = [execResult errorRange];
+                            [standardOut printf:@"% *s\n" withValues:@[[NSNumber numberWithInt:(errorLocation.location+defaultPromptLength+1)], @"^"]];
+                            [standardOut println:[execResult errorMessage]];
+                        }
+                    }
+                    
+                    // release this command
+                    currentCommand = [[NSString alloc] init];
+                }
             }
-            [pool release];
         }
     }
     

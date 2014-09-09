@@ -33,7 +33,7 @@ static NSMutableDictionary* fileModTimes;
             
             // get envvar/user info
             NSDictionary* envVars = [[NSProcessInfo processInfo] environment];
-            NSString* username = [envVars objectForKey:@"USER"];
+            NSString* username = envVars[@"USER"];
             
             // add the user's personal library
             if (username) {
@@ -44,7 +44,7 @@ static NSMutableDictionary* fileModTimes;
             }
             
             // add any additional libraries
-            NSString* userLibs = [envVars objectForKey:@"FSCRIPT_LIB"];
+            NSString* userLibs = envVars[@"FSCRIPT_LIB"];
             if (userLibs)
                 [libraryLocations addObjectsFromArray:[userLibs componentsSeparatedByString:@":"]];
             
@@ -54,8 +54,8 @@ static NSMutableDictionary* fileModTimes;
         
         // add the standard framework locations
         {
-            frameworkLocations = [[NSArray alloc] initWithObjects:@"/System/Library/Frameworks",
-                @"/Library/Frameworks", @"/Network/Frameworks", [@"~/Frameworks" stringByExpandingTildeInPath], nil];
+            frameworkLocations = @[@"~/Library/Frameworks".stringByStandardizingPath, @"/System/Library/Frameworks",
+                @"/Library/Frameworks", @"/Network/Frameworks", [@"~/Frameworks" stringByExpandingTildeInPath]].mutableCopy;
         }
     } 
 }
@@ -75,55 +75,55 @@ static NSMutableDictionary* fileModTimes;
 
 
 - (void) import:(NSString*)fileName force:(BOOL)force {
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    NSString* realFileName = nil;
-    if (![fileName hasSuffix:@".fs"])    // add the .fs suffix if it is missing
-        fileName = [fileName stringByAppendingString:@".fs"];
-    
-    // if the file is specified as an absolute path, load it directly
-    // otherwise, search through the library paths
-    NSFileManager* fileManager = [NSFileManager defaultManager];
-    if (![fileName hasPrefix:@"/"]) {
-        int libCount = [libraryLocations count];
-        for (int i=0; i<libCount; i++) {
-            NSString* testFileName = [NSString stringWithFormat:@"%@/%@",[libraryLocations objectAtIndex:i],fileName];
-            if ([fileManager fileExistsAtPath:testFileName]) {
-                realFileName = [NSString stringWithString:testFileName];
-                break;
+    @autoreleasepool {
+        NSString* realFileName = nil;
+        if (![fileName hasSuffix:@".fs"])    // add the .fs suffix if it is missing
+            fileName = [fileName stringByAppendingString:@".fs"];
+        
+        // if the file is specified as an absolute path, load it directly
+        // otherwise, search through the library paths
+        NSFileManager* fileManager = NSFileManager.defaultManager ;
+        if (![fileName hasPrefix:@"/"]) {
+            int libCount = [libraryLocations count];
+            for (int i=0; i<libCount; i++) {
+                NSString* testFileName = [NSString stringWithFormat:@"%@/%@",libraryLocations[i],fileName];
+                if ([fileManager fileExistsAtPath:testFileName]) {
+                    realFileName = [NSString stringWithString:testFileName];
+                    break;
+                }
             }
         }
-    }
-    
-    if (!realFileName) {
-        FSExecError([NSString stringWithFormat:@"Could not find library file '%@'",fileName]);
-    }
-    
-    
-    // check to see if the file has been modified
-    if (!fileModTimes)
-        fileModTimes = [[NSMutableDictionary alloc] init];
-    NSDate* previousFileModTime = [fileModTimes objectForKey:realFileName];
-    NSDate* fileModTime = [[fileManager fileAttributesAtPath:realFileName traverseLink:YES] objectForKey:NSFileModificationDate];
-    
-    
-    // only load the file if it hasn't been loaded or has changed
-    if (!previousFileModTime || [previousFileModTime compare:fileModTime]==NSOrderedAscending || force) {
-        [fileModTimes setObject:fileModTime forKey:realFileName];
         
-        // load the file - should return nil
-        //id result = [loadFile(realFileName,YES,YES) result];
-        [loadFile(realFileName,YES,YES) result];
-        
-        /*
-        if (result != nil) {
-            FSExecError([NSString stringWithFormat:@"File %@ (%@) returned a non-nil result: %@",
-                fileName, realFileName,
-                (result==[FSVoid fsVoid] ? @"(void)" : [result printString])]);
+        if (!realFileName) {
+            FSExecError([NSString stringWithFormat:@"Could not find library file '%@'",fileName]);
         }
-        */
-    }
+        
+        
+        // check to see if the file has been modified
+        if (!fileModTimes)
+            fileModTimes = [[NSMutableDictionary alloc] init];
+        NSDate* previousFileModTime = fileModTimes[realFileName];
+        NSDate* fileModTime = [fileManager fileAttributesAtPath:realFileName traverseLink:YES][NSFileModificationDate];
+        
+        
+        // only load the file if it hasn't been loaded or has changed
+        if (!previousFileModTime || [previousFileModTime compare:fileModTime]==NSOrderedAscending || force) {
+            fileModTimes[realFileName] = fileModTime;
+            
+            // load the file - should return nil
+            //id result = [loadFile(realFileName,YES,YES) result];
+            [loadFile(realFileName,YES,YES) result];
+            
+            /*
+            if (result != nil) {
+                FSExecError([NSString stringWithFormat:@"File %@ (%@) returned a non-nil result: %@",
+                    fileName, realFileName,
+                    (result==[FSVoid fsVoid] ? @"(void)" : [result printString])]);
+            }
+            */
+        }
     
-    [pool release];
+    }
 }
 
 
@@ -140,7 +140,7 @@ static NSMutableDictionary* fileModTimes;
     NSString* frameworkPath = nil;
     
     if (![frameworkActualName hasPrefix:@"/"]) {
-        NSFileManager* fileManager = [NSFileManager defaultManager];
+        NSFileManager* fileManager = NSFileManager.defaultManager ;
         int libCount = [frameworkLocations count];
         for (int i=0; i<libCount; i++) {
             NSString* testPath = [NSString stringWithFormat:@"%@/%@",[frameworkLocations objectAtIndex:i],frameworkActualName];
@@ -173,12 +173,12 @@ NSString* findCommand(NSString* command) {
         commandPath = command;
     }
     else {
-        NSFileManager* fileManager = [NSFileManager defaultManager];
-        NSArray* paths = [[[[NSProcessInfo processInfo] environment] objectForKey:@"PATH"] componentsSeparatedByString:@":"];
+        NSFileManager* fileManager = NSFileManager.defaultManager ;
+        NSArray* paths = [[[NSProcessInfo processInfo] environment][@"PATH"] componentsSeparatedByString:@":"];
         unsigned int i = 0;
         unsigned int lastPathIndex = [paths count];
         while (!commandPath && i < lastPathIndex) {
-            NSString* possiblePath = [NSString stringWithFormat:@"%@/%@", [paths objectAtIndex:i], command];
+            NSString* possiblePath = [NSString stringWithFormat:@"%@/%@", paths[i], command];
             if ([fileManager fileExistsAtPath:possiblePath])
                 commandPath = possiblePath;
             i++;
@@ -232,9 +232,8 @@ NSString* findCommand(NSString* command) {
     
     //int status = [task terminationStatus];
     
-    [task release];
     
-    return [outputString autorelease];
+    return outputString;
 }
 
 
@@ -244,23 +243,22 @@ NSString* findCommand(NSString* command) {
 
 // execs a command, discards output, returns status
 - (int) execNoOutput:(NSString*)command args:(NSArray*)args {
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    @autoreleasepool {
     
     // create and init task with commandpath, args (if any) and output pipe
-    NSTask* task = [[NSTask alloc] init];
-    [task setLaunchPath:findCommand(command)];
-    if (args)
-        [task setArguments:args];
-    
-    [task launch];
-    [task waitUntilExit];
-    
-    int terminationStatus = [task terminationStatus];
-    
-    [task release];
-    [pool release];
-    
-    return terminationStatus;
+        NSTask* task = [[NSTask alloc] init];
+        [task setLaunchPath:findCommand(command)];
+        if (args)
+            [task setArguments:args];
+        
+        [task launch];
+        [task waitUntilExit];
+        
+        int terminationStatus = [task terminationStatus];
+        
+        
+        return terminationStatus;
+    }
 }
 
 
@@ -270,7 +268,7 @@ NSString* shellName = nil;
 - (NSString*) execShell:(NSString*)command {
     
     if (!shellName)
-        shellName = [[[NSProcessInfo processInfo] environment] objectForKey:@"SHELL"];
+        shellName = [[NSProcessInfo processInfo] environment][@"SHELL"];
     
     return [self exec:shellName
                  args:nil

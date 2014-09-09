@@ -19,10 +19,10 @@ FSRegex* getRegex(NSString* pattern) {
     
     // if this pattern has not been compiled before, compile and
     // cache it
-    FSRegex* regex = [compiledRegexes objectForKey:pattern];
+    FSRegex* regex = compiledRegexes[pattern];
     if (!regex) {
         regex = [[FSRegex alloc] initWithPattern:pattern];
-        [compiledRegexes setObject:regex forKey:pattern];
+        compiledRegexes[pattern] = regex;
     }
     
     return regex;
@@ -54,7 +54,7 @@ FSRegex* getRegex(NSString* pattern) {
 
 // implements Perl's s///gx modifier - takes an FScript block that it evaluates
 // for each match in the string
-- (NSString*) replace:(NSString*)pattern withBlock:(Block*)block {
+- (NSString*) replace:(NSString*)pattern withBlock:(FSBlock*)block {
     // this copy of self will use replaceCharactersInRange: to do the replacements
     NSMutableString* result = [NSMutableString stringWithString:self];
     
@@ -66,7 +66,7 @@ FSRegex* getRegex(NSString* pattern) {
     int offset = 0;
        
     for (int i = 0; i < matchCount; i++) {
-        FSRegexMatch* match = [allMatches objectAtIndex:i];
+        FSRegexMatch* match = allMatches[i];
         int matchGroupCount = [match count];
         
         // create an array out of the match substrings

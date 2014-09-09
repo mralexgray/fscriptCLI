@@ -41,15 +41,15 @@ int access(const char* path, int mode);
 
 
 - (NSDate*) test_m:(NSString*)file {
-    return [[self fileAttributesAtPath:file traverseLink:YES] objectForKey:NSFileModificationDate];
+    return [self fileAttributesAtPath:file traverseLink:YES][NSFileModificationDate];
 }
 
 - (NSNumber*) test_s:(NSString*)file {
-    return [[self fileAttributesAtPath:file traverseLink:YES] objectForKey:NSFileSize];
+    return [self fileAttributesAtPath:file traverseLink:YES][NSFileSize];
 }
 
 - (FSBoolean*) test_z:(NSString*)file {
-    unsigned int size = [[[self fileAttributesAtPath:file traverseLink:YES] objectForKey:NSFileSize] unsignedIntValue];
+    unsigned int size = [[self fileAttributesAtPath:file traverseLink:YES][NSFileSize] unsignedIntValue];
     return [FSBoolean booleanWithBool:(size>0)];
 }
 

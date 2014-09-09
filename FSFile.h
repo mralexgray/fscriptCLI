@@ -210,10 +210,6 @@ Equivalent to <code>readlinesWithSeparator:'\n'</code>.
 - (void)waitForDataInBackgroundAndNotifyForModes:(NSArray *)modes;
 - (void)waitForDataInBackgroundAndNotify;
 
-
-
-
-
 /*
  *
  *  Private methods
@@ -229,7 +225,7 @@ Equivalent to <code>readlinesWithSeparator:'\n'</code>.
 - (id) initWithFileHandle:(NSFileHandle*)handle atLocation:(NSString*)fileLocation;
 
 // closes the file when the object is freed
-- (void) dealloc;
+//- (void) dealloc;
 
 // clear out any data thats held in the buffer used for readln
 - (void) truncateSustainBuffer;
